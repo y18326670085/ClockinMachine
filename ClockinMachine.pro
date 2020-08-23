@@ -5,3 +5,10 @@ CONFIG -= qt
 
 SOURCES += \
         main.c
+
+HEADERS += \
+    friday.h \
+    monday.h \
+    thursday.h \
+    tuesday.h \
+    wednesday.h
