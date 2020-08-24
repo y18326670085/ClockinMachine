@@ -4,11 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.c
+        clockTimeNumber.c \
+        main.c \
+        monday.c \
+        test.c
 
 HEADERS += \
-    friday.h \
+    clockTimeNumber.h \
     monday.h \
-    thursday.h \
-    tuesday.h \
-    wednesday.h
+    test.h

@@ -1,22 +1,31 @@
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
+//#include <time.h>
+
+
+//#include "test.h"
+#include "clockTimeNumber.h"
+#include "monday.h"
 
 void clockin_machine_start();
 int checkIdentifyCode(int num_emp, int code);
 void printClockinTime();
-void test();
+void testScanf();
 
 int main()
 {
-    clockin_machine_start();
+    //clockin_machine_start();
 
-    //printClockinTime();
-    //checkIdentifyCode(110086, 110086);
+    int *clockTimeNumer = clockTimeNumber();
+    printf("ÏµÍ³second £º%d\n", *clockTimeNumer);
 
 
+    //monday();
 
     //test();
+    //printClockinTime();
+    //checkIdentifyCode(110086, 110086);
+    //testScanf();
     return 0;
 }
 
@@ -76,22 +85,8 @@ int checkIdentifyCode(int num_emp, int code)
         return 0;
 }
 
-void printClockinTime()
-{
-    char len[20] = {0};
 
-    time_t timep;
-    time(&timep);
-
-    struct tm *p;
-    p = gmtime(&timep);
-
-    snprintf(len, 20, "%d-%d-%d %d:%d:%d", 1900 + p->tm_year, 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
-
-    printf("\n%s\n", len);
-}
-
-void test()
+void testScanf()
 {
     int a;
     printf("input the data : ");

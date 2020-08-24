@@ -11,7 +11,7 @@
 //    void getClockinData();
 //};
 
-static char* MONDAY_DATA[2];
+
 void monday();
 
 #endif // MONDAY_H
