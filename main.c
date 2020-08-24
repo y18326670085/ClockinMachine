@@ -3,14 +3,18 @@
 #include <time.h>
 
 void clockin_machine_start();
+int checkIdentifyCode(int num_emp, int code);
 void printClockinTime();
 void test();
 
 int main()
 {
-    //clockin_machine_start();
+    clockin_machine_start();
 
-    printClockinTime();
+    //printClockinTime();
+    //checkIdentifyCode(110086, 110086);
+
+
 
     //test();
     return 0;
@@ -19,6 +23,9 @@ int main()
 void clockin_machine_start()
 {
     int num_emp = 0;
+    printf("输入6位数的员工编号 110086\n");
+    printf("输入6位数的验证码 178087\n\n");
+
     printf("输入6位数的员工编号 : ");
     scanf("%d", &num_emp);
     printf("输入的员工编号 ：%d\n", num_emp);
@@ -26,9 +33,15 @@ void clockin_machine_start()
     int identifyCode = 0;
     printf("\n输入校验码 ：");
     scanf("%d", &identifyCode);
-    printf("输入的校验码 ：%d\n", identifyCode);
+    printf("输入的校验码 ：%d\n\n", identifyCode);
 
-    //printf("Hello World!\n");
+    if(checkIdentifyCode(num_emp, identifyCode) == 1)
+    {
+        printf("验证码正确");
+    }
+    else{
+       printf("验证码不正确");
+    }
 }
 
 int checkIdentifyCode(int num_emp, int code)
