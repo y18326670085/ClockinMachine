@@ -29,14 +29,16 @@ int *clockTimeNumber()
     struct tm *p;
     p = gmtime(&timep);
 
-    sprintf(len, "%d-%d-%d %d:%d:%d", 1900 + p->tm_year, 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
+    //sprintf(len, "%d-%d-%d %d:%d:%d", 1900 + p->tm_year, 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
 
     *clockTimeNumber = p->tm_sec;
     *(clockTimeNumber+1) = p->tm_min;
-    *(clockTimeNumber+2) = p->tm_hour;
+    *(clockTimeNumber+2) = 8 + p->tm_hour;
     *(clockTimeNumber+3) = p->tm_mday;
-    *(clockTimeNumber+4) = p->tm_mon;
-    *(clockTimeNumber+5) = p->tm_year;
+    *(clockTimeNumber+4) = 1 + p->tm_mon;
+    *(clockTimeNumber+5) = 1900 + p->tm_year;
+
+    *(clockTimeNumber+6) = p->tm_wday;
 
     return clockTimeNumber;
 }

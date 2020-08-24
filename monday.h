@@ -11,7 +11,8 @@
 //    void getClockinData();
 //};
 
-static char* MONDAY_DATA[2];
-void monday();
+
+void mondayClockInTime(int* clockInTime);
+void mondayClockOutTime(int* clockOutTime);
 
 #endif // MONDAY_H

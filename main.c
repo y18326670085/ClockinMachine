@@ -12,13 +12,26 @@ int checkIdentifyCode(int num_emp, int code);
 void printClockinTime();
 void testScanf();
 
+int *currentTime;
+int clockIn = 0;
+int clockOut = 0;
+
+int num_emp = 0;
+int identifyCode = 0;
+
 int main()
 {
+
+    int *startTime = clockTimeNumber();
+    //第六个位置存放的时星期几的信息
+    printf("%d-%d-%d %d:%d:%d 星期几 : %d", *startTime, *(startTime+1), *(startTime+2), *(startTime+3), *(startTime+4), *(startTime+5), *(startTime+6));
+
+
+    // 不间断的调用时间函数
+    currentTime = clockTimeNumber();
+
+
     //clockin_machine_start();
-
-    int *clockTimeNumer = clockTimeNumber();
-    printf("系统second ：%d\n", *clockTimeNumer);
-
 
     //monday();
 
@@ -29,8 +42,29 @@ int main()
     return 0;
 }
 
-void clockin_machine_start()
+void writeDataInWeekday()
 {
+    while(*(currentTime+6) == 1 && (clockIn != 1 || clockOut != 1))
+    {
+        if(clockIn == 0 && clockOut == 0)
+        {
+            printf("上班打卡\n");
+            mondayClockInTime(currentTime);
+            clockIn = 1;
+        }
+        else if (clockOut == 1 && clockOut == 0) {
+            printf("下班打卡\n");
+            mondayClockOutTime(currentTime);
+            clockOut = 1;
+        }
+    }
+}
+
+
+int *doClockInOut()
+{
+    int *empData = NULL;
+
     int num_emp = 0;
     printf("输入6位数的员工编号 110086\n");
     printf("输入6位数的验证码 178087\n\n");
@@ -38,15 +72,41 @@ void clockin_machine_start()
     printf("输入6位数的员工编号 : ");
     scanf("%d", &num_emp);
     printf("输入的员工编号 ：%d\n", num_emp);
+    empData[0] = num_emp;
 
     int identifyCode = 0;
     printf("\n输入校验码 ：");
     scanf("%d", &identifyCode);
     printf("输入的校验码 ：%d\n\n", identifyCode);
+    empData[1] = identifyCode;
+
+    return empData;
+}
+
+
+void clockin_machine_start()
+{
+//    int num_emp = 0;
+//    printf("输入6位数的员工编号 110086\n");
+//    printf("输入6位数的验证码 178087\n\n");
+
+//    printf("输入6位数的员工编号 : ");
+//    scanf("%d", &num_emp);
+//    printf("输入的员工编号 ：%d\n", num_emp);
+
+//    int identifyCode = 0;
+//    printf("\n输入校验码 ：");
+//    scanf("%d", &identifyCode);
+//    printf("输入的校验码 ：%d\n\n", identifyCode);
+
+//    int num_emp = *doClockInOut();
+//    int identifyCode = *(doClockInOut()+1);
 
     if(checkIdentifyCode(num_emp, identifyCode) == 1)
     {
         printf("验证码正确");
+        //判断是周几
+        //记录打卡时间到static int* MONDAY_DATA[2]
     }
     else{
        printf("验证码不正确");

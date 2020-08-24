@@ -11,9 +11,19 @@
 //    printf("调用周一的函数");
 //}
 
-void monday()
+static int* MONDAY_DATA[2] = {NULL, NULL};
+
+void mondayClockInTime(int* clockInTime)
 {
-    static char* MONDAY_DATA[2] = {NULL, NULL};
+
+    MONDAY_DATA[0] = clockInTime;
 
     printf("调用monday函数");
+}
+
+void mondayClockOutTime(int* clockOutTime)
+{
+
+    MONDAY_DATA[1] = clockOutTime;
+
 }
