@@ -7,9 +7,11 @@ SOURCES += \
         clockTimeNumber.c \
         main.c \
         monday.c \
-        test.c
+        test.c \
+        tuesday.c
 
 HEADERS += \
     clockTimeNumber.h \
     monday.h \
-    test.h
+    test.h \
+    tuesday.h

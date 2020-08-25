@@ -21,7 +21,7 @@ int *clockTimeNumber()
 {
     static int clockTimeNumber[10] = {0};
 
-    char len[20] = {0};
+    //char len[20] = {0};
 
     time_t timep;
     time(&timep);

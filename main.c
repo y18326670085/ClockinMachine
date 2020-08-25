@@ -7,10 +7,13 @@
 //#include "test.h"
 #include "clockTimeNumber.h"
 #include "monday.h"
+#include "tuesday.h"
 
 void clockin_machine_start();
 int checkIdentifyCode(int num_emp, int code);
 void printClockinTime();
+void writeDataInWeekday();
+void printClockTimeWithFormat(int *clockTime);
 void testScanf();
 
 int *currentTime;
@@ -20,16 +23,22 @@ int clockOut = 0;
 int num_emp = 0;
 int identifyCode = 0;
 
+//int* TUESDAY_DATA[2] = {NULL, NULL};
+int TUESDAY_DATA_IN[10];
+int TUESDAY_DATA_OUT[10];
+
 int main()
 {
 
     int *startTime = clockTimeNumber();
     //第六个位置存放的时星期几的信息
-    printf("%d-%d-%d %d:%d:%d 星期几 : %d", *startTime, *(startTime+1), *(startTime+2), *(startTime+3), *(startTime+4), *(startTime+5), *(startTime+6));
+    printf("%d-%d-%d %d:%d:%d 星期几 : %d\n\n", *startTime, *(startTime+1), *(startTime+2), *(startTime+3), *(startTime+4), *(startTime+5), *(startTime+6));
 
 
     // 不间断的调用时间函数
-    //currentTime = clockTimeNumber();
+    currentTime = clockTimeNumber();
+
+    writeDataInWeekday();
 
 //    printf("上班打卡\n");
 //    getch();
@@ -47,24 +56,39 @@ int main()
     return 0;
 }
 
+void printClockTimeWithFormat(int *clockTime)
+{
+    printf("%d-%d-%d %d:%d:%d 星期几 : %d\n\n", *clockTime, *(clockTime+1), *(clockTime+2), *(clockTime+3), *(clockTime+4), *(clockTime+5), *(clockTime+6));
+}
+
 void writeDataInWeekday()
 {
-    while(*(currentTime+6) == 1 && (clockIn != 1 || clockOut != 1))
+    while(*(currentTime+6) == 2 && (clockIn == 0 || clockOut == 0))
     {
         if(clockIn == 0 && clockOut == 0)
         {
             printf("上班打卡\n");
             // 从console接收输入
             getch();
-            mondayClockInTime(currentTime);
+            tuesdayClockInTime(currentTime, TUESDAY_DATA_IN);
+            printClockTimeWithFormat(currentTime);
             clockIn = 1;
         }
-        else if (clockOut == 1 && clockOut == 0) {
+        else if (clockIn == 1 && clockOut == 0) {
             printf("下班打卡\n");
-            mondayClockOutTime(currentTime);
+            getch();
+            tuesdayClockOutTime(currentTime, TUESDAY_DATA_OUT);
+            printClockTimeWithFormat(currentTime);
             clockOut = 1;
         }
+        currentTime = clockTimeNumber();
+        //printf("星期几 : %d", *(currentTime+6));
     }
+
+    //printf("星期几TUESDAY_DATA_IN : %d", *TUESDAY_DATA_IN);
+    printClockTimeWithFormat(TUESDAY_DATA_IN);
+    //printf("星期几TUESDAY_DATA : \n");
+    //printf("clockIn : %d\n", clockIn);
 }
 
 
@@ -93,22 +117,6 @@ int *doClockInOut()
 
 void clockin_machine_start()
 {
-//    int num_emp = 0;
-//    printf("输入6位数的员工编号 110086\n");
-//    printf("输入6位数的验证码 178087\n\n");
-
-//    printf("输入6位数的员工编号 : ");
-//    scanf("%d", &num_emp);
-//    printf("输入的员工编号 ：%d\n", num_emp);
-
-//    int identifyCode = 0;
-//    printf("\n输入校验码 ：");
-//    scanf("%d", &identifyCode);
-//    printf("输入的校验码 ：%d\n\n", identifyCode);
-
-//    int num_emp = *doClockInOut();
-//    int identifyCode = *(doClockInOut()+1);
-
     doClockInOut();
 
     if(checkIdentifyCode(num_emp, identifyCode) == 1)
