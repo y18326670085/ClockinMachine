@@ -11,19 +11,22 @@
 //    printf("调用周一的函数");
 //}
 
-static int* MONDAY_DATA[2] = {NULL, NULL};
-
-void mondayClockInTime(int* clockInTime)
+void mondayClockInTime(int clockInTime[10], int monday_data_in[10])
 {
 
-    MONDAY_DATA[0] = clockInTime;
-
-    printf("调用monday函数");
+    for(int i=0;i<10;i++)
+    {
+        monday_data_in[i] = clockInTime[i];
+    }
 }
 
-void mondayClockOutTime(int* clockOutTime)
+//void tuesdayClockOutTime(int* clockOutTime, int* tuesday_data_out)
+void mondayClockOutTime(int clockOutTime[10], int monday_data_out[10])
 {
 
-    MONDAY_DATA[1] = clockOutTime;
+    for(int i=0;i<10;i++)
+    {
+        monday_data_out[i] = clockOutTime[i];
+    }
 
 }
