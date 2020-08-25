@@ -79,6 +79,33 @@ void printWeekRecord()
     printf("\n\n");
 }
 
+
+float hoursOfWork(int clockIn[10], int clockOut[10])
+{
+    float hoursOfWork;
+
+    //上班hours
+    int hoursClockIn = *(clockIn+2);
+    //上班minutes
+    int minClockIn = *(clockIn+1);
+
+    //下班hours
+    int hoursClockOut = *(clockOut+2);
+    //下班minutes
+    int minClockOut = *(clockOut+1);
+
+    if(minClockOut < minClockIn)
+    {
+        hoursOfWork = ((minClockOut + 60) - minClockIn) / 60;
+        hoursOfWork += hoursClockOut - 1 - hoursClockIn;
+    }
+    else{
+        hoursOfWork = (minClockOut - minClockIn) / 60;
+        hoursOfWork += hoursClockOut - hoursClockIn;
+    }
+    return hoursOfWork;
+}
+
 void writeDataInWeekday()
 {
     while(*(currentTime+6) == 1 && (clockIn == 0 || clockOut == 0))
@@ -127,6 +154,11 @@ void writeDataInWeekday()
         }
         currentTime = clockTimeNumber();
         //printf("星期几 : %d", *(currentTime+6));
+    }
+
+    if(hoursOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT)<9)
+    {
+        printf("\n上班时间不到9小时，实际上班时间为 ：%f\n\n", hoursOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT));
     }
 
     //printf("星期几TUESDAY_DATA_IN : %d", *TUESDAY_DATA_IN);
