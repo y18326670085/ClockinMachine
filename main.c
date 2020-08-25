@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 //#include <time.h>
+#include <conio.h>
 
 
 //#include "test.h"
@@ -28,7 +29,11 @@ int main()
 
 
     // 不间断的调用时间函数
-    currentTime = clockTimeNumber();
+    //currentTime = clockTimeNumber();
+
+//    printf("上班打卡\n");
+//    getch();
+//    printf("上班打卡getch()\n");
 
 
     //clockin_machine_start();
@@ -49,6 +54,8 @@ void writeDataInWeekday()
         if(clockIn == 0 && clockOut == 0)
         {
             printf("上班打卡\n");
+            // 从console接收输入
+            getch();
             mondayClockInTime(currentTime);
             clockIn = 1;
         }
@@ -102,11 +109,14 @@ void clockin_machine_start()
 //    int num_emp = *doClockInOut();
 //    int identifyCode = *(doClockInOut()+1);
 
+    doClockInOut();
+
     if(checkIdentifyCode(num_emp, identifyCode) == 1)
     {
         printf("验证码正确");
         //判断是周几
         //记录打卡时间到static int* MONDAY_DATA[2]
+        writeDataInWeekday();
     }
     else{
        printf("验证码不正确");
