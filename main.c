@@ -16,6 +16,7 @@ void printClockinTime();
 void writeDataInWeekday();
 void printClockTimeWithFormat(int *clockTime);
 void printWeekRecord();
+int hoursOfWork(int clockIn[10], int clockOut[10]);
 void testScanf();
 
 int *currentTime;
@@ -64,7 +65,7 @@ int main()
 
 void printClockTimeWithFormat(int *clockTime)
 {
-    printf("%d-%d-%d %d:%d:%d 星期几 : %d 加班时长 ： %d 迟到时长 ： %d\n",
+    printf("%d-%d-%d %d:%d:%d 星期几 : %d 加班时长 ： %d 迟到时长 ： %d 是否早退 ： %d\n",
            *clockTime, //秒
            *(clockTime+1), //分
            *(clockTime+2), //时
@@ -73,7 +74,8 @@ void printClockTimeWithFormat(int *clockTime)
            *(clockTime+5), //年
            *(clockTime+6),//星期
            *(clockTime+7),//加班的时间，初始值为0,单位minute
-           *(clockTime+8));//迟到的时间，初始值为0，单位minute
+           *(clockTime+8),//迟到的时间，初始值为0，单位minute
+           *(clockTime+9));//是否早退
 
 }
 
@@ -96,10 +98,38 @@ void printWeekRecord()
     printf("周二下班打卡时间 : ");
     printClockTimeWithFormat(WEDNESDAY_DATA_OUT);
     printf("\n\n");
+
+
+    int hoursOfWorkWeek = 0;
+    hoursOfWorkWeek = hoursOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT)
+            + hoursOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT);
+    int avrHoursOfWorkWeek = 0;
+    avrHoursOfWorkWeek /= 5;
+
+    int ammountOfLateStart = 0;
+    if(MONDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
+    if(TUESDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
+
+    int ammountOfEarlierQuit = 0;
+    if(MONDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
+    if(TUESDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
+
+    int ammountOfLackOfClock = 0;
+    if(MONDAY_DATA_OUT[5] == 0) ammountOfLackOfClock += 1;
+    if(TUESDAY_DATA_OUT[5] == 0) ammountOfLackOfClock += 1;
+
+    printf("######################################\n");
+    printf("周平均上班时长 : %d\n", avrHoursOfWorkWeek);
+    printf("周迟到次数 : %d\n", ammountOfLateStart);
+    printf("周早退次数 : %d\n", ammountOfEarlierQuit);
+    printf("缺卡次数 : %d\n", ammountOfLackOfClock);
+    printf("######################################\n");
+
 }
 
 
-float hoursOfWork(int clockIn[10], int clockOut[10])
+// 获得上班的时长 以minute为单位
+int hoursOfWork(int clockIn[10], int clockOut[10])
 {
     float hoursOfWork;
 
@@ -115,12 +145,12 @@ float hoursOfWork(int clockIn[10], int clockOut[10])
 
     if(minClockOut < minClockIn)
     {
-        hoursOfWork = ((minClockOut + 60) - minClockIn) / 60;
-        hoursOfWork += hoursClockOut - 1 - hoursClockIn;
+        hoursOfWork = minClockOut + 60 - minClockIn;
+        hoursOfWork += (hoursClockOut - 1 - hoursClockIn)*60;
     }
     else{
-        hoursOfWork = (minClockOut - minClockIn) / 60;
-        hoursOfWork += hoursClockOut - hoursClockIn;
+        hoursOfWork = minClockOut - minClockIn;
+        hoursOfWork += (hoursClockOut - hoursClockIn)*60;
     }
     return hoursOfWork;
 }
@@ -153,11 +183,11 @@ void writeDataInWeekday()
 
 
 
-            while(hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT)<9)
+            while(hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT)<9*60)
             {
-                printf("\n上班时间不到9小时，实际上班时间为 ：%f\n\n", hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT));
-                float leaveEarly = 9 - hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT);
-                printf("早退%d分钟\n\n", ((int)leaveEarly)*60);
+                printf("\n上班时间不到9小时，实际上班时间为 ：%f\n\n", (float)(hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT)/60));
+                int leaveEarly = 9*60 - hoursOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT);
+                printf("早退%d分钟\n\n", leaveEarly);
 
                 //询问早退是否要重新打卡
                 printf("要重新下班打卡么？(1/0)\n");
@@ -176,6 +206,7 @@ void writeDataInWeekday()
                     printClockTimeWithFormat(WEDNESDAY_DATA_OUT);
                 }
                 else{
+                    WEDNESDAY_DATA_OUT[9] = 1;
                     break;
                 }
             }
@@ -224,7 +255,7 @@ void writeDataInWeekday()
 
             while(hoursOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT)<9)
             {
-                printf("\n上班时间不到9小时，实际上班时间为 ：%f\n\n", hoursOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT));
+                printf("\n上班时间不到9小时，实际上班时间为 ：%d\n\n", hoursOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT));
                 float leaveEarly = 9 - hoursOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT);
                 printf("早退%d分钟\n\n", ((int)leaveEarly)*60);
 
