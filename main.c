@@ -84,13 +84,15 @@ void createDataForTest()
     MONDAY_DATA_OUT[9] = 0;
 
     TUESDAY_DATA_IN[0] = 21;
-    TUESDAY_DATA_IN[1] = 30;
+    TUESDAY_DATA_IN[1] = 20;
     TUESDAY_DATA_IN[2] = 7;
     TUESDAY_DATA_IN[3] = 25;
     TUESDAY_DATA_IN[4] = 8;
     TUESDAY_DATA_IN[5] = 2020;
     TUESDAY_DATA_IN[6] = 2;
-    //TUESDAY_DATA_IN[7] = 550;
+    TUESDAY_DATA_IN[7] = 680;
+    TUESDAY_DATA_IN[8] = 20;
+    TUESDAY_DATA_IN[9] = 0;
 
     TUESDAY_DATA_OUT[0] = 11;
     TUESDAY_DATA_OUT[1] = 40;
@@ -99,7 +101,9 @@ void createDataForTest()
     TUESDAY_DATA_OUT[4] = 8;
     TUESDAY_DATA_OUT[5] = 2020;
     TUESDAY_DATA_OUT[6] = 2;
-    //TUESDAY_DATA_OUT[7] = 550;
+    TUESDAY_DATA_OUT[7] = 680;
+    TUESDAY_DATA_OUT[8] = 20;
+    TUESDAY_DATA_OUT[9] = 0;
 
     WEDNESDAY_DATA_IN[0] = 21;
     WEDNESDAY_DATA_IN[1] = 30;
@@ -110,6 +114,7 @@ void createDataForTest()
     WEDNESDAY_DATA_IN[6] = 3;
     WEDNESDAY_DATA_IN[7] = 0;
     WEDNESDAY_DATA_IN[8] = 0;
+    WEDNESDAY_DATA_IN[9] = 180;
 
     WEDNESDAY_DATA_OUT[0] = 11;
     WEDNESDAY_DATA_OUT[1] = 30;
@@ -120,6 +125,7 @@ void createDataForTest()
     WEDNESDAY_DATA_OUT[6] = 3;
     WEDNESDAY_DATA_OUT[7] = 0;
     WEDNESDAY_DATA_OUT[8] = 0;
+    WEDNESDAY_DATA_OUT[9] = 180;
 
 //    THURSDAY_DATA_IN[0] = 11;
 //    THURSDAY_DATA_IN[1] = 30;
@@ -128,6 +134,9 @@ void createDataForTest()
 //    THURSDAY_DATA_IN[4] = 8;
 //    THURSDAY_DATA_IN[5] = 2020;
 //    THURSDAY_DATA_IN[6] = 4;
+//    THURSDAY_DATA_IN[7] = 10;
+//    THURSDAY_DATA_IN[8] = 0;
+//    THURSDAY_DATA_IN[8] = 0;
 
 //    THURSDAY_DATA_OUT[0] = 21;
 //    THURSDAY_DATA_OUT[1] = 40;
@@ -136,22 +145,31 @@ void createDataForTest()
 //    THURSDAY_DATA_OUT[4] = 8;
 //    THURSDAY_DATA_OUT[5] = 2020;
 //    THURSDAY_DATA_OUT[6] = 4;
+//    THURSDAY_DATA_OUT[7] = 10;
+//    THURSDAY_DATA_OUT[8] = 0;
+//    THURSDAY_DATA_OUT[8] = 0;
 
-    FRIDAY_DATA_IN[0] = 21;
-    FRIDAY_DATA_IN[1] = 0;
-    FRIDAY_DATA_IN[2] = 7;
-    FRIDAY_DATA_IN[3] = 28;
-    FRIDAY_DATA_IN[4] = 8;
-    FRIDAY_DATA_IN[5] = 2020;
-    FRIDAY_DATA_IN[6] = 5;
+//    FRIDAY_DATA_IN[0] = 21;
+//    FRIDAY_DATA_IN[1] = 0;
+//    FRIDAY_DATA_IN[2] = 7;
+//    FRIDAY_DATA_IN[3] = 28;
+//    FRIDAY_DATA_IN[4] = 8;
+//    FRIDAY_DATA_IN[5] = 2020;
+//    FRIDAY_DATA_IN[6] = 5;
+//    FRIDAY_DATA_IN[7] = 90;
+//    FRIDAY_DATA_IN[8] = 0;
+//    FRIDAY_DATA_IN[9] = 0;
 
-    FRIDAY_DATA_OUT[0] = 11;
-    FRIDAY_DATA_OUT[1] = 30;
-    FRIDAY_DATA_OUT[2] = 17;
-    FRIDAY_DATA_OUT[3] = 28;
-    FRIDAY_DATA_OUT[4] = 8;
-    FRIDAY_DATA_OUT[5] = 2020;
-    FRIDAY_DATA_OUT[6] = 5;
+//    FRIDAY_DATA_OUT[0] = 11;
+//    FRIDAY_DATA_OUT[1] = 30;
+//    FRIDAY_DATA_OUT[2] = 17;
+//    FRIDAY_DATA_OUT[3] = 28;
+//    FRIDAY_DATA_OUT[4] = 8;
+//    FRIDAY_DATA_OUT[5] = 2020;
+//    FRIDAY_DATA_OUT[6] = 5;
+//    FRIDAY_DATA_OUT[7] = 90;
+//    FRIDAY_DATA_OUT[8] = 0;
+//    FRIDAY_DATA_OUT[9] = 0;
 }
 
 void printClockTimeWithFormat(int *clockTime)
@@ -171,6 +189,8 @@ void printClockTimeWithFormat(int *clockTime)
 
 void printWeekRecord()
 {
+    printf("\n\n");
+
     printf("周一上班打卡时间 : ");
     printClockTimeWithFormat(MONDAY_DATA_IN);
     printf("周一下班打卡时间 : ");
@@ -309,7 +329,7 @@ void writeDataInWeekday()
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 THURSDAY_DATA_IN[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
-                printf("THURSDAY_DATA_OUT[8] 迟到 %d 分钟\n\n",  THURSDAY_DATA_OUT[8]);
+                printf("迟到 %d 分钟\n\n",  THURSDAY_DATA_OUT[8]);
             }
 
             clockIn = 1;
@@ -323,7 +343,7 @@ void writeDataInWeekday()
 
             while(hoursOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT)<9*60)
             {
-                printf("\n上班时间不到9小时，实际上班时间为 ：%f\n\n", (float)(hoursOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT)/60));
+                printf("上班时间不到9小时，实际上班时间为 ：%f\n", (float)(hoursOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT)/60));
                 int leaveEarly = 9*60 - hoursOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT);
                 printf("早退%d分钟\n\n", leaveEarly);
 
@@ -337,6 +357,7 @@ void writeDataInWeekday()
                 int againClockOut;
                 scanf("%d",&againClockOut);
                 printf("againClockOut : %d\n", againClockOut);
+                printf("\n");
 
                 if(againClockOut == 1)
                 {
@@ -384,9 +405,11 @@ void writeDataInWeekday()
     clockOut = 0;
 
 
-
-    //输出一周的打卡记录
-    printWeekRecord();
+    if(currentTime[6] >= 5)
+    {
+        //输出一周的打卡记录
+        printWeekRecord();
+    }
 }
 
 
