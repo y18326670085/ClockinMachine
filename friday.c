@@ -1,12 +1,13 @@
 #include "friday.h"
 #include <stdio.h>
 
-void fridayClockInTime(int clockInTime[10], int frisday_data_in[10])
+
+void fridayClockInTime(int clockInTime[10], int friday_data_in[10])
 {
 
     for(int i=0;i<10;i++)
     {
-        frisday_data_in[i] = clockInTime[i];
+        friday_data_in[i] = clockInTime[i];
     }
 }
 

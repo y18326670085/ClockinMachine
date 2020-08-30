@@ -1,6 +1,8 @@
 #include "thursday.h"
 #include <stdio.h>
 
+
+
 void thursdayClockInTime(int clockInTime[10], int thursday_data_in[10])
 {
 

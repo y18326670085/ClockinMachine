@@ -1,7 +1,6 @@
 #include "tuesday.h"
 #include <stdio.h>
-
-//static int* TUESDAY_DATA[2] = {NULL, NULL};
+;
 
 void tuesdayClockInTime(int clockInTime[10], int tuesday_data_in[10])
 {
