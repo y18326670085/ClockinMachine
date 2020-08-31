@@ -4,7 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        clockTimeNumber.c \
+        calculatorAndWriteData.c \
+        clockAndRecord.c \
         friday.c \
         main.c \
         monday.c \
@@ -14,7 +15,8 @@ SOURCES += \
         wednesday.c
 
 HEADERS += \
-    clockTimeNumber.h \
+    calculatorAndWriteData.h \
+    clockAndRecord.h \
     friday.h \
     monday.h \
     test.h \
