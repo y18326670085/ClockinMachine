@@ -1,9 +1,14 @@
 /*
- * @Author: your name
+ * @Author: Lin Ye
  * @Date: 2020-08-23 11:08:33
- * @LastEditTime: 2020-08-30 11:30:28
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @LastEditTime: 2020-08-30 11:30:28 
+ * @Description: This programm get employee clock in and out time according week day. At the start
+ *               you get information to give number of employee and identify code as they are displayed
+ *               in the screen. With the conincident of both numer you will be asked to print enter to
+ *               simulate punch. Wenn the work hours less than nine, user will be asked to give punch
+ *               again, and in the case if the input is 1 then you can punch again otherwise the program
+ *               will end the punch action. On Friday after clock out a record of the whole week will
+ *               be generated.
  * @FilePath: \ClockinMachine\main.c
  */
 #include <stdio.h>
@@ -23,14 +28,7 @@
 
 
 void clockin_machine_start();
-//int checkIdentifyCode(int num_emp, int code);
-//void printClockinTime();
-//void writeDataInWeekday();
-//void printClockTimeWithFormat(int *clockTime);
-//void printWeekRecord();
-//int minutesOfWork(int clockIn[10], int clockOut[10]);
-//void createDataForTest();
-void testScanf();
+
 
 int *currentTime;
 int clockIn = 0;
@@ -39,7 +37,7 @@ int clockOut = 0;
 int num_emp = 0;
 int identifyCode = 0;
 
-// these array are used in clockAndRecord.h
+// these arrays are used in clockAndRecord.h
 int MONDAY_DATA_IN[10];
 int MONDAY_DATA_OUT[10];
 int TUESDAY_DATA_IN[10];
@@ -76,7 +74,15 @@ int main()
     return 0;
 }
 
-
+/**
+ * @description:at first you get employee information and then check if
+ *              the input identify code correct or not. if it is correct
+ *              then call function and wirte clock in and out data in
+ *              container. If wrong and the user will be asked to give
+ *              identify code again till three times
+ * @param void
+ * @return void
+ */
 void clockin_machine_start()
 {
     getEmpInfo();
@@ -104,10 +110,3 @@ void clockin_machine_start()
 
 
 
-void testScanf()
-{
-    int a;
-    printf("input the data : ");
-    scanf("%d",&a);//�������һ���س���
-    printf("%d\n",a);
-}

@@ -9,5 +9,6 @@
 //};
 
 void test();
+void testScanf();
 
 #endif // TEST_H

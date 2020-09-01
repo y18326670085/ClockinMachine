@@ -1,16 +1,12 @@
-#include "monday.h"
 #include <stdio.h>
+#include "monday.h"
 
-//Monday::Monday()
-//{
-
-//}
-
-//void Monday::getClockinData()
-//{
-//    printf("调用周一的函数");
-//}
-
+/**
+ * @description: this function will be called by clock in on monday
+ * @param int clockInTime[10] the system time by clock in
+ * @param int monday_data_in[10] store clock in data in container
+ * @return void
+ */
 void mondayClockInTime(int clockInTime[10], int monday_data_in[10])
 {
 
@@ -20,7 +16,12 @@ void mondayClockInTime(int clockInTime[10], int monday_data_in[10])
     }
 }
 
-//void tuesdayClockOutTime(int* clockOutTime, int* tuesday_data_out)
+/**
+ * @description: this function will be called by clock out on monday
+ * @param int clockOutTime[10] the system time by clock out
+ * @param int monday_data_out[10] store clock out data in container
+ * @return void
+ */
 void mondayClockOutTime(int clockOutTime[10], int monday_data_out[10])
 {
 

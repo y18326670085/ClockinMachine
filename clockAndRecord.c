@@ -24,16 +24,25 @@ void printClockinTime()
     struct tm *p;
     p = gmtime(&timep);
 
-    snprintf(len, 20, "%d-%d-%d %d:%d:%d", 1900 + p->tm_year, 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
+    snprintf(len, 20, "%d-%d-%d %d:%d:%d",
+             1900 + p->tm_year,
+             1 + p->tm_mon,
+             p->tm_mday,
+             8 + p->tm_hour,
+             p->tm_min,
+             p->tm_sec);
 
     printf("\n%s\n", len);
 }
 
+/**
+ * @description:transfor clock time in an integer array and stored each number in an element
+ * @param NULL
+ * @return int* an integer array in which number of time als a element stored
+ */
 int *clockTimeNumber()
 {
     static int clockTimeNumber[10] = {0};
-
-    //char len[20] = {0};
 
     time_t timep;
     time(&timep);
@@ -55,8 +64,6 @@ int *clockTimeNumber()
     return clockTimeNumber;
 }
 
-
-
 /**
  * @description:
  * @param {type}
@@ -77,7 +84,11 @@ void printClockTimeWithFormat(int *clockTime)
            *(clockTime+9));// if early quick
 }
 
-
+/**
+ * @description:print out week record
+ * @param NULL
+ * @return void
+ */
 void printWeekRecord()
 {
     printf("\n\n");
@@ -113,7 +124,6 @@ void printWeekRecord()
     printf("\n\n");
 
 
-    // ��ƽ������ʱ��
     int hoursOfWorkWeek = 0;
     hoursOfWorkWeek = minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT)
             + minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT)
@@ -123,7 +133,7 @@ void printWeekRecord()
     int avrHoursOfWorkWeek = 0;
     avrHoursOfWorkWeek = hoursOfWorkWeek / 5;
 
-    // �ٵ�����
+
     int ammountOfLateStart = 0;
     if(MONDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
     if(TUESDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
@@ -131,7 +141,7 @@ void printWeekRecord()
     if(THURSDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
     if(FRIDAY_DATA_OUT[8] > 0) ammountOfLateStart += 1;
 
-    //���˴���
+
     int ammountOfEarlierQuit = 0;
     if(MONDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
     if(TUESDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
@@ -139,7 +149,7 @@ void printWeekRecord()
     if(THURSDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
     if(FRIDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
 
-    //ȱ������
+
     int ammountOfLackOfClock = 0;
     if(MONDAY_DATA_OUT[5] == 0) ammountOfLackOfClock += 1;
     if(TUESDAY_DATA_OUT[5] == 0) ammountOfLackOfClock += 1;
@@ -157,6 +167,11 @@ void printWeekRecord()
 
 }
 
+/**
+ * @description:initiate data for test
+ * @param NULL
+ * @return void
+ */
 void createDataForTest()
 {
 //    MONDAY_DATA_IN[0] = 21;

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <conio.h>
-
 #include "clockAndRecord.h"
 #include "monday.h"
 #include "tuesday.h"
@@ -10,13 +9,11 @@
 #include "friday.h"
 #include "calculatorAndWriteData.h"
 
-
 extern int num_emp;
 extern int identifyCode;
 extern int *currentTime;
 extern int clockIn;
 extern int clockOut;
-
 extern int MONDAY_DATA_IN[10];
 extern int MONDAY_DATA_OUT[10];
 extern int TUESDAY_DATA_IN[10];
@@ -28,11 +25,14 @@ extern int THURSDAY_DATA_OUT[10];
 extern int FRIDAY_DATA_IN[10];
 extern int FRIDAY_DATA_OUT[10];
 
-
-
+/**
+ * @description:information about number of employee and identify code
+ *              input should be the same as the given number
+ * @param void
+ * @return void
+ */
 void getEmpInfo()
 {
-
     printf("number of emplyee 110086\n");
     printf("identifycode 178087\n\n");
 
@@ -45,8 +45,12 @@ void getEmpInfo()
     printf("the number of identifycode %d\n\n", identifyCode);
 }
 
-
-// minutes of work long
+/**
+ * @description: calculate the ammount of work in minutes
+ * @param int clockIn[10]
+ * @param int clockOut[10]
+ * @return int ammount of work a day in minute
+ */
 int minutesOfWork(int clockIn[10], int clockOut[10])
 {
     float hoursOfWork;
@@ -73,13 +77,17 @@ int minutesOfWork(int clockIn[10], int clockOut[10])
     return hoursOfWork;
 }
 
-
-
-
+/**
+ * @description:according the user input calculate identifycode
+ *              and compare with the identify code from the user
+ *              if correct return 1 else return 0
+ * @param int num_emp
+ * @param int code
+ * @return int
+ */
 int checkIdentifyCode(int num_emp, int code)
 {
-    // Ա����� 110086
-    // У���� := Ա����ų���λ��������Ա��������
+    // employee number 110086
     // 110086 + 68001 = 178087
     int identifyCode = num_emp;
     int idtArr[6];
@@ -94,7 +102,7 @@ int checkIdentifyCode(int num_emp, int code)
 
     identifyCode = 0;
 
-    // �����������λ [6,8,0,0,1,1]
+    // idrArr has elements [6,8,0,0,1,1]
     for(int i=0; i<5; i++)
     {
         identifyCode += idtArr[i]*pow(10,5-i-1);
@@ -108,7 +116,13 @@ int checkIdentifyCode(int num_emp, int code)
         return 0;
 }
 
-
+/**
+ * @description:clock in and out data will be writen in related container
+ *              according to from which week day. clockIn and ClockOut expressed
+ *              if in of our of word is already done
+ * @param NULL
+ * @return void
+ */
 void writeDataInWeekday()
 {
 
@@ -132,12 +146,15 @@ void writeDataInWeekday()
                 printf("amount of late to work in ( %d ) minutes\n\n",  MONDAY_DATA_IN[8]);
             }
             clockIn = 1;
+            printf("\n\nData of today\n\n");
+            printClockTimeWithFormat(MONDAY_DATA_IN);
+            printf("\n\n");
         }
         else if (clockIn == 1 && clockOut == 0) {
             printf("Clock Out? \n");
             getch();
             wednesdayClockOutTime(currentTime, MONDAY_DATA_OUT);
-            while(minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT)<9*60)
+            while(minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) < 9*60)
             {
                 printf("work hours %f\n", (float)(minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT)/60));
                 int leaveEarly = 9*60 - minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT);
@@ -179,19 +196,18 @@ void writeDataInWeekday()
             //extra work
             MONDAY_DATA_OUT[7] = minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 : 0 ;
             MONDAY_DATA_IN[7] = minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 : 0 ;
+
+            printf("\n\nTUESDAY_DATA_OUT\n\n");
+            printClockTimeWithFormat(TUESDAY_DATA_OUT);
+
         }
         currentTime = clockTimeNumber();
+
+        clockIn = 0;
+        clockOut = 0;
     }
 
-    printf("\n\nData of today\n\n");
-    printClockTimeWithFormat(MONDAY_DATA_IN);
-    printClockTimeWithFormat(MONDAY_DATA_OUT);
-
-    clockIn = 0;
-    clockOut = 0;
-
-
-    //###### �ܶ� #####################################################################################################
+    //###### Tuesday #####################################################################################################
 
     while(*(currentTime+6) == 2 && (clockIn == 0 || clockOut == 0))
     {
@@ -199,23 +215,27 @@ void writeDataInWeekday()
         {
             printf("Clock In? \n");
             getch();
-            thursdayClockInTime(currentTime, TUESDAY_DATA_IN);
-            printClockTimeWithFormat(currentTime);
+            tuesdayClockInTime(currentTime, TUESDAY_DATA_IN);
+            printClockTimeWithFormat(TUESDAY_DATA_IN);
 
             // get ammount of late to work
             if(TUESDAY_DATA_IN[2]*60 + TUESDAY_DATA_IN[1] - MONDAY_DATA_OUT[7] > 7*60)
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
-                TUESDAY_DATA_IN[8] = TUESDAY_DATA_IN[2]*60 + TUESDAY_DATA_IN[1] - TUESDAY_DATA_OUT[7] - 7*60;
+                TUESDAY_DATA_IN[8] = TUESDAY_DATA_IN[2]*60 + TUESDAY_DATA_IN[1] - MONDAY_DATA_OUT[7] - 7*60;
                 printf("ammount of late to work %d minutes\n\n",  TUESDAY_DATA_IN[8]);
             }
             clockIn = 1;
+
+            printf("\n\nTUESDAY_DATA_IN\n\n");
+            printClockTimeWithFormat(TUESDAY_DATA_IN);
+            printf("\n\n");
         }
         else if (clockIn == 1 && clockOut == 0) {
             printf("Clock Out?\n");
             getch();
-            wednesdayClockOutTime(currentTime, TUESDAY_DATA_OUT);
-            while(minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT)<9*60)
+            tuesdayClockOutTime(currentTime, TUESDAY_DATA_OUT);
+            while(minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) < 9*60)
             {
                 printf("ammount of work of day %d minutes\n", minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT);
@@ -256,16 +276,17 @@ void writeDataInWeekday()
             // attain extra work time
             TUESDAY_DATA_OUT[7] = minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) - 9*60 : 0 ;
             TUESDAY_DATA_IN[7] = minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) - 9*60 : 0 ;
+
+            printf("\n\nTUESDAY_DATA_OUT\n\n");
+            printClockTimeWithFormat(TUESDAY_DATA_OUT);
         }
         currentTime = clockTimeNumber();
     }
 
-    //printClockTimeWithFormat(TUESDAY_DATA_IN);
-
     clockIn = 0;
     clockOut = 0;
 
-    //###### ���� #####################################################################################################
+    //###### Wednesday #####################################################################################################
 
     while(*(currentTime+6) == 3 && (clockIn == 0 || clockOut == 0))
     {
@@ -273,7 +294,7 @@ void writeDataInWeekday()
         {
             printf("Clock In?\n");
             getch();
-            thursdayClockInTime(currentTime, WEDNESDAY_DATA_IN);
+            wednesdayClockInTime(currentTime, WEDNESDAY_DATA_IN);
             printClockTimeWithFormat(currentTime);
 
             // get ammount of late to work
@@ -282,6 +303,9 @@ void writeDataInWeekday()
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 WEDNESDAY_DATA_IN[8] = WEDNESDAY_DATA_IN[2]*60 + WEDNESDAY_DATA_IN[1] - TUESDAY_DATA_OUT[7] - 7*60;
                 printf("ammount of late to work %d minutes\n\n",  WEDNESDAY_DATA_IN[8]);
+                printf("\n\WEDNESDAY_DATA_IN\n\n");
+                printClockTimeWithFormat(WEDNESDAY_DATA_IN);
+                printf("\n\n");
             }
             clockIn = 1;
         }
@@ -304,7 +328,7 @@ void writeDataInWeekday()
 
                 if(againClockOut == 1)
                 {
-                    tuesdayClockOutTime(currentTime, WEDNESDAY_DATA_OUT);
+                    wednesdayClockOutTime(currentTime, WEDNESDAY_DATA_OUT);
                     printClockTimeWithFormat(WEDNESDAY_DATA_OUT);
                 }
                 else{
@@ -325,15 +349,16 @@ void writeDataInWeekday()
             // attain extra work time
             WEDNESDAY_DATA_OUT[7] = minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT) - 9*60 : 0 ;
             WEDNESDAY_DATA_IN[7] = minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT) - 9*60 : 0 ;
+
+            printf("\n\nWEDNESDAY_DATA_OUT\n\n");
+            printClockTimeWithFormat(WEDNESDAY_DATA_OUT);
         }
         currentTime = clockTimeNumber();
     }
-
-    //printClockTimeWithFormat(WEDNESDAY_DATA_IN);
-
     clockIn = 0;
     clockOut = 0;
-    //###### ���� #####################################################################################################
+
+    //###### Thursday #####################################################################################################
 
     while(*(currentTime+6) == 4 && (clockIn == 0 || clockOut == 0))
     {
@@ -342,7 +367,7 @@ void writeDataInWeekday()
             printf("Clock In?\n");
             getch();
             thursdayClockInTime(currentTime, THURSDAY_DATA_IN);
-            printClockTimeWithFormat(currentTime);
+            printClockTimeWithFormat(THURSDAY_DATA_IN);
 
             // get ammount of late to work
             if(THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] > 7*60)
@@ -352,6 +377,9 @@ void writeDataInWeekday()
                 printf("ammount of late to work %d minutes\n\n",  THURSDAY_DATA_IN[8]);
             }
             clockIn = 1;
+            printf("\n\nTHURSDAY_DATA_IN\n\n");
+            printClockTimeWithFormat(THURSDAY_DATA_IN);
+            printf("\n\n");
         }
         else if (clockIn == 1 && clockOut == 0) {
             printf("Clock Out? \n");
@@ -393,16 +421,17 @@ void writeDataInWeekday()
             // attain extra work time
             THURSDAY_DATA_OUT[7] = minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT) - 9*60 : 0 ;
             THURSDAY_DATA_IN[7] = minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT) - 9*60 : 0 ;
+
+            printf("\n\THURSDAY_DATA_OUT\n\n");
+            printClockTimeWithFormat(THURSDAY_DATA_OUT);
         }
         currentTime = clockTimeNumber();
     }
 
-    //printClockTimeWithFormat(THURSDAY_DATA_IN);
-
     clockIn = 0;
     clockOut = 0;
 
-   //###### ���� ######################################################################################################
+   //###### Friday ######################################################################################################
 
     while(*(currentTime+6) == 5 && (clockIn == 0 || clockOut == 0))
     {
@@ -421,12 +450,15 @@ void writeDataInWeekday()
                 printf("ammount of late to work %d minutes\n\n",  FRIDAY_DATA_IN[8]);
             }
             clockIn = 1;
+            printf("\n\nFRIDAY_DATA_IN\n\n");
+            printClockTimeWithFormat(FRIDAY_DATA_IN);
+            printf("\n\n");
         }
         else if (clockIn == 1 && clockOut == 0) {
             printf("Clock Out :\n");
             getch();
             fridayClockOutTime(currentTime, FRIDAY_DATA_OUT);
-            while(minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT)<9*60)
+            while(minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT) < 9*60)
             {
                 printf("ammount of work of day %d minutes\n", minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT);
@@ -465,9 +497,10 @@ void writeDataInWeekday()
             FRIDAY_DATA_IN[7] = minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT) - 9*60 : 0 ;
         }
         currentTime = clockTimeNumber();
-    }
 
-    //printClockTimeWithFormat(FRIDAY_DATA_IN);
+        printf("\n\nFRIDAY_DATA_OUT\n\n");
+        printClockTimeWithFormat(FRIDAY_DATA_OUT);
+    }
 
     clockIn = 0;
     clockOut = 0;
