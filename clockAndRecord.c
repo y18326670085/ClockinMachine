@@ -144,10 +144,10 @@ void printWeekRecord()
 
     int ammountOfEarlierQuit = 0;
     if(MONDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
-    if(TUESDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
-    if(WEDNESDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
-    if(THURSDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
-    if(FRIDAY_DATA_OUT[9] == 1) ammountOfLateStart += 1;
+    if(TUESDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
+    if(WEDNESDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
+    if(THURSDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
+    if(FRIDAY_DATA_OUT[9] == 1) ammountOfEarlierQuit += 1;
 
 
     int ammountOfLackOfClock = 0;
@@ -160,8 +160,8 @@ void printWeekRecord()
 
     printf("######################################\n");
     printf("average hours of work week : %d\n", avrHoursOfWorkWeek);
-    printf("late start in minutes : %d\n", ammountOfLateStart);
-    printf("early quick in minutes : %d\n", ammountOfEarlierQuit);
+    printf("amount of late start : %d\n", ammountOfLateStart);
+    printf("amount of early quick : %d\n", ammountOfEarlierQuit);
     printf("ammount of lack of clock : %d\n", ammountOfLackOfClock);
     printf("######################################\n");
 
@@ -174,27 +174,27 @@ void printWeekRecord()
  */
 void createDataForTest()
 {
-//    MONDAY_DATA_IN[0] = 21;
-//    MONDAY_DATA_IN[1] = 30;
-//    MONDAY_DATA_IN[2] = 6;
-//    MONDAY_DATA_IN[3] = 24;
-//    MONDAY_DATA_IN[4] = 8;
-//    MONDAY_DATA_IN[5] = 2020;
-//    MONDAY_DATA_IN[6] = 1; // day in week
-//    MONDAY_DATA_IN[7] = 0; // extra work hours in minuntes
-//    MONDAY_DATA_IN[8] = 0; // if late to work
-//    MONDAY_DATA_IN[9] = 0; // if early quick
+    MONDAY_DATA_IN[0] = 21;
+    MONDAY_DATA_IN[1] = 30;
+    MONDAY_DATA_IN[2] = 6;
+    MONDAY_DATA_IN[3] = 24;
+    MONDAY_DATA_IN[4] = 8;
+    MONDAY_DATA_IN[5] = 2020;
+    MONDAY_DATA_IN[6] = 1; // day in week
+    MONDAY_DATA_IN[7] = 0; // extra work hours in minuntes
+    MONDAY_DATA_IN[8] = 0; // if late to work
+    MONDAY_DATA_IN[9] = 0; // if early quick
 
-//    MONDAY_DATA_OUT[0] = 11;
-//    MONDAY_DATA_OUT[1] = 30;
-//    MONDAY_DATA_OUT[2] = 15;
-//    MONDAY_DATA_OUT[3] = 24;
-//    MONDAY_DATA_OUT[4] = 8;
-//    MONDAY_DATA_OUT[5] = 2020;
-//    MONDAY_DATA_OUT[6] = 1;
-//    MONDAY_DATA_OUT[7] = 0;
-//    MONDAY_DATA_OUT[8] = 0;
-//    MONDAY_DATA_OUT[9] = 0;
+    MONDAY_DATA_OUT[0] = 11;
+    MONDAY_DATA_OUT[1] = 30;
+    MONDAY_DATA_OUT[2] = 15;
+    MONDAY_DATA_OUT[3] = 24;
+    MONDAY_DATA_OUT[4] = 8;
+    MONDAY_DATA_OUT[5] = 2020;
+    MONDAY_DATA_OUT[6] = 1;
+    MONDAY_DATA_OUT[7] = 0;
+    MONDAY_DATA_OUT[8] = 0;
+    MONDAY_DATA_OUT[9] = 0;
 
     TUESDAY_DATA_IN[0] = 21;
     TUESDAY_DATA_IN[1] = 20;
@@ -240,27 +240,27 @@ void createDataForTest()
     WEDNESDAY_DATA_OUT[8] = 0;
     WEDNESDAY_DATA_OUT[9] = 1;
 
-    THURSDAY_DATA_IN[0] = 11;
-    THURSDAY_DATA_IN[1] = 30;
-    THURSDAY_DATA_IN[2] = 10;
-    THURSDAY_DATA_IN[3] = 27;
-    THURSDAY_DATA_IN[4] = 8;
-    THURSDAY_DATA_IN[5] = 2020;
-    THURSDAY_DATA_IN[6] = 4;
-    THURSDAY_DATA_IN[7] = 10;
-    THURSDAY_DATA_IN[8] = 0;
-    THURSDAY_DATA_IN[8] = 0;
+//    THURSDAY_DATA_IN[0] = 11;
+//    THURSDAY_DATA_IN[1] = 30;
+//    THURSDAY_DATA_IN[2] = 10;
+//    THURSDAY_DATA_IN[3] = 27;
+//    THURSDAY_DATA_IN[4] = 8;
+//    THURSDAY_DATA_IN[5] = 2020;
+//    THURSDAY_DATA_IN[6] = 4;
+//    THURSDAY_DATA_IN[7] = 10;
+//    THURSDAY_DATA_IN[8] = 0;
+//    THURSDAY_DATA_IN[8] = 0;
 
-    THURSDAY_DATA_OUT[0] = 21;
-    THURSDAY_DATA_OUT[1] = 40;
-    THURSDAY_DATA_OUT[2] = 19;
-    THURSDAY_DATA_OUT[3] = 27;
-    THURSDAY_DATA_OUT[4] = 8;
-    THURSDAY_DATA_OUT[5] = 2020;
-    THURSDAY_DATA_OUT[6] = 4;
-    THURSDAY_DATA_OUT[7] = 10;
-    THURSDAY_DATA_OUT[8] = 0;
-    THURSDAY_DATA_OUT[8] = 0;
+//    THURSDAY_DATA_OUT[0] = 21;
+//    THURSDAY_DATA_OUT[1] = 40;
+//    THURSDAY_DATA_OUT[2] = 19;
+//    THURSDAY_DATA_OUT[3] = 27;
+//    THURSDAY_DATA_OUT[4] = 8;
+//    THURSDAY_DATA_OUT[5] = 2020;
+//    THURSDAY_DATA_OUT[6] = 4;
+//    THURSDAY_DATA_OUT[7] = 10;
+//    THURSDAY_DATA_OUT[8] = 0;
+//    THURSDAY_DATA_OUT[8] = 0;
 
     FRIDAY_DATA_IN[0] = 21;
     FRIDAY_DATA_IN[1] = 0;

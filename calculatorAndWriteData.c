@@ -33,16 +33,16 @@ extern int FRIDAY_DATA_OUT[10];
  */
 void getEmpInfo()
 {
-    printf("number of emplyee 110086\n");
-    printf("identifycode 178087\n\n");
+    printf("Number of emplyee 110086\n");
+    printf("Identifycode 178087\n\n");
 
-    printf("give number of employee : ");
+    printf("Give number of employee : ");
     scanf("%d", &num_emp);
-    printf("the number of emplyee %d\n", num_emp);
+    printf("The number of emplyee %d\n", num_emp);
 
-    printf("\ngive the identifycode");
+    printf("\nGive the identifycode");
     scanf("%d", &identifyCode);
-    printf("the number of identifycode %d\n\n", identifyCode);
+    printf("The number of identifycode %d\n\n", identifyCode);
 }
 
 /**
@@ -143,7 +143,7 @@ void writeDataInWeekday()
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 // amount of late to work in minutes
                 MONDAY_DATA_IN[8] = MONDAY_DATA_IN[2]*60 + MONDAY_DATA_IN[1] - 7*60;
-                printf("amount of late to work in ( %d ) minutes\n\n",  MONDAY_DATA_IN[8]);
+                printf("Amount of late to work in ( %d ) minutes\n\n",  MONDAY_DATA_IN[8]);
             }
             clockIn = 1;
             printf("\n\nData of today\n\n");
@@ -161,7 +161,7 @@ void writeDataInWeekday()
                 printf("leave early ( %d ) minutes\n\n", leaveEarly);
 
                 //ask to clock out again if work hours less than 9
-                printf("clock out again? (1/0)\n");
+                printf("Clock out again? (1/0)\n");
 
 //                char againClockOut;
 //                scanf("%c",&againClockOut);
@@ -197,7 +197,7 @@ void writeDataInWeekday()
             MONDAY_DATA_OUT[7] = minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 : 0 ;
             MONDAY_DATA_IN[7] = minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 > 0 ? minutesOfWork(MONDAY_DATA_IN, MONDAY_DATA_OUT) - 9*60 : 0 ;
 
-            printf("\n\nTUESDAY_DATA_OUT\n\n");
+            printf("\n\nTUESDAY_DATA_OUT\n");
             printClockTimeWithFormat(TUESDAY_DATA_OUT);
 
         }
@@ -223,7 +223,7 @@ void writeDataInWeekday()
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 TUESDAY_DATA_IN[8] = TUESDAY_DATA_IN[2]*60 + TUESDAY_DATA_IN[1] - MONDAY_DATA_OUT[7] - 7*60;
-                printf("ammount of late to work %d minutes\n\n",  TUESDAY_DATA_IN[8]);
+                printf("Ammount of late to work %d minutes\n\n",  TUESDAY_DATA_IN[8]);
             }
             clockIn = 1;
 
@@ -237,9 +237,9 @@ void writeDataInWeekday()
             tuesdayClockOutTime(currentTime, TUESDAY_DATA_OUT);
             while(minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT) < 9*60)
             {
-                printf("ammount of work of day %d minutes\n", minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT));
+                printf("Ammount of work of day %d minutes\n", minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(TUESDAY_DATA_IN, TUESDAY_DATA_OUT);
-                printf("ammount of leaving ealy %d minutes\n\n", leaveEarly);
+                printf("Ammount of leaving ealy %d minutes\n\n", leaveEarly);
 
 
                 printf("Clock Out again?(1/0)\n");
@@ -302,7 +302,7 @@ void writeDataInWeekday()
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 WEDNESDAY_DATA_IN[8] = WEDNESDAY_DATA_IN[2]*60 + WEDNESDAY_DATA_IN[1] - TUESDAY_DATA_OUT[7] - 7*60;
-                printf("ammount of late to work %d minutes\n\n",  WEDNESDAY_DATA_IN[8]);
+                printf("Ammount of late to work %d minutes\n\n",  WEDNESDAY_DATA_IN[8]);
                 printf("\n\WEDNESDAY_DATA_IN\n\n");
                 printClockTimeWithFormat(WEDNESDAY_DATA_IN);
                 printf("\n\n");
@@ -315,9 +315,9 @@ void writeDataInWeekday()
             wednesdayClockOutTime(currentTime, WEDNESDAY_DATA_OUT);
             while(minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT)<9*60)
             {
-                printf("ammount of work of day %d minutes\n", minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT));
+                printf("Ammount of work of day %d minutes\n", minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(WEDNESDAY_DATA_IN, WEDNESDAY_DATA_OUT);
-                printf("ammount of leaving ealy %d minutes\n\n", leaveEarly);
+                printf("Ammount of leaving ealy %d minutes\n\n", leaveEarly);
 
                 printf("Clock Out again?(1/0)\n");
 
@@ -374,7 +374,7 @@ void writeDataInWeekday()
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 THURSDAY_DATA_IN[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
-                printf("ammount of late to work %d minutes\n\n",  THURSDAY_DATA_IN[8]);
+                printf("Ammount of late to work %d minutes\n\n",  THURSDAY_DATA_IN[8]);
             }
             clockIn = 1;
             printf("\n\nTHURSDAY_DATA_IN\n\n");
@@ -387,11 +387,11 @@ void writeDataInWeekday()
             wednesdayClockOutTime(currentTime, THURSDAY_DATA_OUT);
             while(minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT)<9*60)
             {
-                printf("ammount of work of day %d minutes\n", minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT));
+                printf("Ammount of work of day %d minutes\n", minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(THURSDAY_DATA_IN, THURSDAY_DATA_OUT);
-                printf("ammount of leaving ealy %d minutes\n\n", leaveEarly);
+                printf("Ammount of leaving ealy %d minutes\n\n", leaveEarly);
 
-                printf("Clock Ont again? (1/0)\n");
+                printf("Clock Out again? (1/0)\n");
 
                 int againClockOut;
                 scanf("%d",&againClockOut);
@@ -447,7 +447,7 @@ void writeDataInWeekday()
             {
                 //THURSDAY_DATA_OUT[8] = THURSDAY_DATA_IN[2]*60 + THURSDAY_DATA_IN[1] - WEDNESDAY_DATA_OUT[7] - 7*60;
                 FRIDAY_DATA_IN[8] = FRIDAY_DATA_IN[2]*60 + FRIDAY_DATA_IN[1] - THURSDAY_DATA_OUT[7] - 7*60;
-                printf("ammount of late to work %d minutes\n\n",  FRIDAY_DATA_IN[8]);
+                printf("Ammount of late to work %d minutes\n\n",  FRIDAY_DATA_IN[8]);
             }
             clockIn = 1;
             printf("\n\nFRIDAY_DATA_IN\n\n");
@@ -460,11 +460,11 @@ void writeDataInWeekday()
             fridayClockOutTime(currentTime, FRIDAY_DATA_OUT);
             while(minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT) < 9*60)
             {
-                printf("ammount of work of day %d minutes\n", minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT));
+                printf("Ammount of work of day %d minutes\n", minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT));
                 int leaveEarly = 9*60 - minutesOfWork(FRIDAY_DATA_IN, FRIDAY_DATA_OUT);
-                printf("ammount of leaving ealy %d minutes\n\n", leaveEarly);
+                printf("Ammount of leaving ealy %d minutes\n\n", leaveEarly);
 
-                printf(" want to clock out later? (1/0)\n");
+                printf("Clock out later? (1/0)\n");
 
 
                 int againClockOut;

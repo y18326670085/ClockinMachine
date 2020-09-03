@@ -93,18 +93,18 @@ void clockin_machine_start()
 
     if(checkIdentifyCode(num_emp, identifyCode) == 1)
     {
-        printf("identifycode is correct\n\n");
+        printf("Identifycode is correct\n\n");
         writeDataInWeekday();
     }
     else if(ammountOfInput < 2){
-       printf("identify code is wrong, input again\n");
+       printf("Identify code is wrong, input again\n");
        scanf("%d", &identifyCode);
        ammountOfInput++;
        goto CHECKIDENTIFYCODE;
     }
     else
     {
-        printf("identify code wrong and end the program\n");
+        printf("Identify code is wrong and end the program\n");
     }
 }
 
