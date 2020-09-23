@@ -26,6 +26,8 @@
 #include "thursday.h"
 #include "friday.h"
 
+#include "struct.h"
+
 
 void clockin_machine_start();
 

@@ -19,6 +19,7 @@ HEADERS += \
     clockAndRecord.h \
     friday.h \
     monday.h \
+    struct.h \
     test.h \
     thursday.h \
     tuesday.h \
