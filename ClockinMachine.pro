@@ -9,6 +9,7 @@ SOURCES += \
         friday.c \
         main.c \
         monday.c \
+        struct.c \
         test.c \
         thursday.c \
         tuesday.c \

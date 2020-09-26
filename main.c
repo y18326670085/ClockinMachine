@@ -51,6 +51,9 @@ int THURSDAY_DATA_OUT[10];
 int FRIDAY_DATA_IN[10];
 int FRIDAY_DATA_OUT[10];
 
+int s_index;
+
+
 int main()
 {
 
@@ -108,6 +111,9 @@ void clockin_machine_start()
     {
         printf("Identify code is wrong and end the program\n");
     }
+
+    printf("\n\ns_index is %d\n", s_index);
+    printEmpInfo(EMPARR[s_index]);
 }
 
 

@@ -168,7 +168,7 @@ void printWeekRecord()
     matchInfoToEmp(num_emp,
                         avrHoursOfWorkWeek, ammountOfLateStart, ammountOfEarlierQuit, ammountOfLackOfClock,
                         ATDINFOARR, EMPARR);
-//    ATDINFO110086.avrHoursOfWorkWeek = avrHoursOfWorkWeek;
+
 
 
 
@@ -235,27 +235,27 @@ void createDataForTest()
     TUESDAY_DATA_OUT[8] = 20;
     TUESDAY_DATA_OUT[9] = 0;
 
-//    WEDNESDAY_DATA_IN[0] = 21;
-//    WEDNESDAY_DATA_IN[1] = 30;
-//    WEDNESDAY_DATA_IN[2] = 7;
-//    WEDNESDAY_DATA_IN[3] = 26;
-//    WEDNESDAY_DATA_IN[4] = 8;
-//    WEDNESDAY_DATA_IN[5] = 2020;
-//    WEDNESDAY_DATA_IN[6] = 3;
-//    WEDNESDAY_DATA_IN[7] = 0;
-//    WEDNESDAY_DATA_IN[8] = 0;
-//    WEDNESDAY_DATA_IN[9] = 1;
+    WEDNESDAY_DATA_IN[0] = 21;
+    WEDNESDAY_DATA_IN[1] = 30;
+    WEDNESDAY_DATA_IN[2] = 7;
+    WEDNESDAY_DATA_IN[3] = 26;
+    WEDNESDAY_DATA_IN[4] = 8;
+    WEDNESDAY_DATA_IN[5] = 2020;
+    WEDNESDAY_DATA_IN[6] = 3;
+    WEDNESDAY_DATA_IN[7] = 0;
+    WEDNESDAY_DATA_IN[8] = 0;
+    WEDNESDAY_DATA_IN[9] = 1;
 
-//    WEDNESDAY_DATA_OUT[0] = 11;
-//    WEDNESDAY_DATA_OUT[1] = 30;
-//    WEDNESDAY_DATA_OUT[2] = 12;
-//    WEDNESDAY_DATA_OUT[3] = 26;
-//    WEDNESDAY_DATA_OUT[4] = 8;
-//    WEDNESDAY_DATA_OUT[5] = 2020;
-//    WEDNESDAY_DATA_OUT[6] = 3;
-//    WEDNESDAY_DATA_OUT[7] = 0;
-//    WEDNESDAY_DATA_OUT[8] = 0;
-//    WEDNESDAY_DATA_OUT[9] = 1;
+    WEDNESDAY_DATA_OUT[0] = 11;
+    WEDNESDAY_DATA_OUT[1] = 30;
+    WEDNESDAY_DATA_OUT[2] = 12;
+    WEDNESDAY_DATA_OUT[3] = 26;
+    WEDNESDAY_DATA_OUT[4] = 8;
+    WEDNESDAY_DATA_OUT[5] = 2020;
+    WEDNESDAY_DATA_OUT[6] = 3;
+    WEDNESDAY_DATA_OUT[7] = 0;
+    WEDNESDAY_DATA_OUT[8] = 0;
+    WEDNESDAY_DATA_OUT[9] = 1;
 
     THURSDAY_DATA_IN[0] = 11;
     THURSDAY_DATA_IN[1] = 30;
@@ -279,27 +279,27 @@ void createDataForTest()
     THURSDAY_DATA_OUT[8] = 0;
     THURSDAY_DATA_OUT[8] = 0;
 
-    FRIDAY_DATA_IN[0] = 21;
-    FRIDAY_DATA_IN[1] = 0;
-    FRIDAY_DATA_IN[2] = 7;
-    FRIDAY_DATA_IN[3] = 28;
-    FRIDAY_DATA_IN[4] = 8;
-    FRIDAY_DATA_IN[5] = 2020;
-    FRIDAY_DATA_IN[6] = 5;
-    FRIDAY_DATA_IN[7] = 90;
-    FRIDAY_DATA_IN[8] = 0;
-    FRIDAY_DATA_IN[9] = 0;
+//    FRIDAY_DATA_IN[0] = 21;
+//    FRIDAY_DATA_IN[1] = 0;
+//    FRIDAY_DATA_IN[2] = 7;
+//    FRIDAY_DATA_IN[3] = 28;
+//    FRIDAY_DATA_IN[4] = 8;
+//    FRIDAY_DATA_IN[5] = 2020;
+//    FRIDAY_DATA_IN[6] = 5;
+//    FRIDAY_DATA_IN[7] = 90;
+//    FRIDAY_DATA_IN[8] = 0;
+//    FRIDAY_DATA_IN[9] = 0;
 
-    FRIDAY_DATA_OUT[0] = 11;
-    FRIDAY_DATA_OUT[1] = 30;
-    FRIDAY_DATA_OUT[2] = 17;
-    FRIDAY_DATA_OUT[3] = 28;
-    FRIDAY_DATA_OUT[4] = 8;
-    FRIDAY_DATA_OUT[5] = 2020;
-    FRIDAY_DATA_OUT[6] = 5;
-    FRIDAY_DATA_OUT[7] = 90;
-    FRIDAY_DATA_OUT[8] = 0;
-    FRIDAY_DATA_OUT[9] = 0;
+//    FRIDAY_DATA_OUT[0] = 11;
+//    FRIDAY_DATA_OUT[1] = 30;
+//    FRIDAY_DATA_OUT[2] = 17;
+//    FRIDAY_DATA_OUT[3] = 28;
+//    FRIDAY_DATA_OUT[4] = 8;
+//    FRIDAY_DATA_OUT[5] = 2020;
+//    FRIDAY_DATA_OUT[6] = 5;
+//    FRIDAY_DATA_OUT[7] = 90;
+//    FRIDAY_DATA_OUT[8] = 0;
+//    FRIDAY_DATA_OUT[9] = 0;
 }
 
 
